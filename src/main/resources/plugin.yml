@@ -1,0 +1,12 @@
+name: Assassination
+version: '${project.version}'
+main: xyz.lotai.assassination.Assassination
+api-version: 1.17
+# prefix: "🔪 ASSASSINATION 🕵️‍"
+prefix: "ASSASSINATION"
+authors: [ sexnine ]
+website: sexnine.xyz
+depend: ["Multiverse-Core"]
+commands:
+  assassination:
+    description: Assassination!
