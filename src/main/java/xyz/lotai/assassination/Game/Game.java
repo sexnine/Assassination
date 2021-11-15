@@ -102,7 +102,7 @@ public class Game {
         WorldBorder worldBorder = this.CBWorld.getWorldBorder();
         worldBorder.setCenter(0, 0);
         worldBorder.setSize(1000);
-        this.setCountdown(new Countdown(15) { //a
+        this.setCountdown(new Countdown(5) { //a
             @Override
             public void onEverySecond() {
                 Bukkit.broadcastMessage("§eStarting in: " + this.getTimeFormatted());
@@ -135,7 +135,7 @@ public class Game {
         this.events.getRunningEvents().start();
         this.state = GameState.GRACEPERIOD;
         Bukkit.broadcastMessage("§eYour target will be revealed in §62 §eminutes!");
-        this.setCountdown(new Countdown(120) { //a
+        this.setCountdown(new Countdown(15) { //a
             @Override
             public void onEverySecond() {
                 bossBar.setTimer(this.getTimeLeft(), this.getInitialTime(), "§a§lTargets revealed in %time%");
@@ -176,7 +176,7 @@ public class Game {
         this.events.getMainGameEvents().stop();
         this.events.getGracePeriodEvents().start();
         this.state = GameState.GRACEPERIOD;
-        this.setCountdown(new Countdown(120) { //a
+        this.setCountdown(new Countdown(16) { //a
             @Override
             public void onEverySecond() {
                 bossBar.setTimer(this.getTimeLeft(), this.getInitialTime(), "§a§lDeathmatch starts in %time%");
@@ -213,6 +213,7 @@ public class Game {
         this.playSoundToPlayers(Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1.0F);
         player.beforeDestroy();
         this.players.remove(player.getPlayer().getUniqueId());
+        Util.refreshPlayerVisibilty(player.getPlayer(), player.getTarget().getPlayer());
         updateBBPlayerCount();
         Bukkit.broadcastMessage("§6" + player.getPlayer().getName() + "§e has been eliminated! §6" + this.players.size() + "§e players left!");
         player.getPlayer().setGameMode(GameMode.SPECTATOR);

@@ -1,5 +1,9 @@
 package xyz.lotai.assassination.Game.Events;
 
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.events.PacketAdapter;
+import com.comphenix.protocol.events.PacketEvent;
+import com.comphenix.protocol.wrappers.WrappedWatchableObject;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,11 +27,53 @@ import xyz.lotai.assassination.Util.Util;
 
 import java.time.Instant;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 
 public class RunningEvents extends Events {
     private final HashMap<UUID, BukkitTask> awaitJoinTasks = new HashMap<>();
+    private final PacketAdapter packetListener;
+
+    public RunningEvents() {
+        packetListener = new PacketAdapter(Assassination.getInstance(), PacketType.Play.Server.ENTITY_METADATA) {
+            @Override
+            public void onPacketSending(PacketEvent e) {
+                Game game = Assassination.getGame();
+                if (game.getState() == GameState.GRACEPERIOD) {
+                    return;
+                }
+                GamePlayer player = game.getPlayer(e.getPlayer());
+                if (player == null) {
+                    return;
+                }
+                if (player.getTarget().getPlayer().getEntityId() != e.getPacket().getIntegers().read(0)) {
+                    return;
+                }
+                Bukkit.broadcastMessage("Setting " + player.getTarget().getPlayer().getName() + " as glowing for " + e.getPlayer().getName()); // DEBUG
+                List<WrappedWatchableObject> watchableObjectList = e.getPacket().getWatchableCollectionModifier().read(0);
+                for (WrappedWatchableObject metadata : watchableObjectList) {
+                    if (metadata.getIndex() == 0) {
+                        byte b = (byte) metadata.getValue();
+                        b |= 0b01000000; // Adding glow effect
+                        metadata.setValue(b);
+                    }
+                }
+            }
+        };
+    }
+
+    @Override
+    public void start() {
+        super.start();
+        Assassination.getProtocolManager().addPacketListener(this.packetListener);
+    }
+
+    @Override
+    public void stop() {
+        super.stop();
+        Assassination.getProtocolManager().removePacketListener(this.packetListener);
+    }
 
     @EventHandler
     public void onPlayerDropItem(PlayerDropItemEvent e) {

@@ -83,7 +83,11 @@ public class GamePlayer {
     }
 
     public void setTarget(GamePlayer playeri) {
+        if (this.target != null) {
+            Util.refreshPlayerVisibilty(this.player, this.target.getPlayer());
+        }
         this.target = playeri;
+        Util.refreshPlayerVisibilty(this.player, this.target.getPlayer());
         this.lastAttackTime = 0;
         playeri.setAssassin(this);
 //        Bukkit.broadcastMessage("Set target of " + this.player.getName() + " to " + playeri.getPlayer().getName());  //DEBUG

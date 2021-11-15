@@ -1,9 +1,12 @@
 package xyz.lotai.assassination.Util;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.PlayerInventory;
+import xyz.lotai.assassination.Assassination;
 
 import java.nio.ByteBuffer;
 import java.util.Random;
@@ -37,5 +40,11 @@ public class Util {
                 world.dropItemNaturally(location, item);
             }
         });
+    }
+
+    public static void refreshPlayerVisibilty(Player player, Player playerToHide) {
+        Bukkit.broadcastMessage("Refreshing " + playerToHide.getName() + " for " + player.getName()); // DEBUG
+        player.hidePlayer(Assassination.getInstance(), playerToHide);
+        player.showPlayer(Assassination.getInstance(), playerToHide);
     }
 }

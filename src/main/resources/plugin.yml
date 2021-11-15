@@ -6,7 +6,7 @@ api-version: 1.17
 prefix: "ASSASSINATION"
 authors: [ sexnine ]
 website: sexnine.xyz
-depend: ["Multiverse-Core"]
+depend: ["Multiverse-Core", "ProtocolLib"]
 commands:
   assassination:
     description: Assassination!
