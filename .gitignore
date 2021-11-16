@@ -1,5 +1,7 @@
 .idea/
 target/
+ServerPack/
+*.zip
 
 # Compiled class file
 *.class

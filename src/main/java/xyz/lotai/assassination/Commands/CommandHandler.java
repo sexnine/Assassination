@@ -31,7 +31,7 @@ public class CommandHandler implements CommandExecutor {
     public void infoCommand(CommandSender sender) {
         sender.sendMessage("§eAssassination - developed by §6sexnine");
         // TODO: Dynamic arguments - fuck it, just make this whole command handler extend BaseCommand
-        sender.sendMessage("§eAvailable subcommands: §6start§e, §6info§e.");
+        sender.sendMessage("§eAvailable subcommands: §6start§e, §6info§e, §6stop§e.");
     }
 
     public void addCommand(BaseCommand command) {

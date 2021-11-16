@@ -1,5 +1,7 @@
 package xyz.lotai.assassination.Game;
 
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -70,6 +72,10 @@ public class GamePlayer {
             @Override
             public void run() {
                 updateCompass();
+                Location targetLocation = target.getPlayer().getLocation();
+                Location myLocation = player.getLocation();
+                double distance = Util.calculateDistanceBetween(myLocation.getX(), myLocation.getY(), targetLocation.getX(), targetLocation.getY());
+                player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§eTracking §6" + target.getPlayer().getName() + "§7 (" + distance + "m)"));
             }
         }.runTaskTimer(Assassination.getInstance(), 0L, 1L);
     }

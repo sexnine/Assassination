@@ -54,6 +54,8 @@ public class Game {
         this.MVWorld.setGameMode(GameMode.SURVIVAL);
         this.MVWorld.setDifficulty(Difficulty.EASY);
 
+        this.events.getStartingEvents().start();
+
         Bukkit.broadcastMessage("§a3/4 §eChoosing targets...");
         // TODO: Implement spectators
         Bukkit.getOnlinePlayers().forEach((player) -> {
@@ -74,7 +76,6 @@ public class Game {
 
         Bukkit.broadcastMessage("§a4/4 §eTeleporting players...");
         this.events.getWaitingEvents().stop();
-        this.events.getStartingEvents().start();
         this.CBWorld = this.MVWorld.getCBWorld();
         Location teleportLocation = this.CBWorld.getSpawnLocation();
         gamePlayersList.forEach((player) -> {

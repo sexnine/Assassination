@@ -15,7 +15,6 @@ public class WaitingEvents extends Events {
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
 
-        Game game = Assassination.getGame();
         World world = Bukkit.getWorld("world");
         if (world != null && player.getWorld() != world) {
             player.teleport(world.getSpawnLocation());
