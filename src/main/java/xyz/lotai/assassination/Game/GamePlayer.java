@@ -74,7 +74,7 @@ public class GamePlayer {
                 updateCompass();
                 Location targetLocation = target.getPlayer().getLocation();
                 Location myLocation = player.getLocation();
-                double distance = Util.calculateDistanceBetween(myLocation.getX(), myLocation.getY(), targetLocation.getX(), targetLocation.getY());
+                int distance = (int) Util.calculateDistanceBetween(myLocation.getX(), myLocation.getZ(), targetLocation.getX(), targetLocation.getZ());
                 player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§eTracking §6" + target.getPlayer().getName() + "§7 (" + distance + "m)"));
             }
         }.runTaskTimer(Assassination.getInstance(), 0L, 1L);
