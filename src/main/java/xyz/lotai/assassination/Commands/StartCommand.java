@@ -9,17 +9,13 @@ import xyz.lotai.assassination.Game.GameState;
 public class StartCommand extends BaseCommand {
 
     public StartCommand(CommandHandler commandHandlerInstance) {
-        super(commandHandlerInstance, "start", true, null);
+        super(commandHandlerInstance, "start", true, true, null);
     }
 
     @Override
     public void onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (Assassination.getGame().getState() != GameState.WAITING) {
             sender.sendMessage("§cA game is currently in progress.");
-            return;
-        }
-        if (!sender.isOp()) {
-            sender.sendMessage("§cYou must be OP to run this command.  Try running §4op " + sender.getName() + " §cin the console first.");
             return;
         }
         //TODO: Account for spectators

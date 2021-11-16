@@ -18,6 +18,7 @@ public final class Assassination extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        this.saveDefaultConfig();
         new CommandHandler(this);
         game = new Game();
         MVCoreInstance = (MultiverseCore) Bukkit.getServer().getPluginManager().getPlugin("Multiverse-Core");

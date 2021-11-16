@@ -1,0 +1,2 @@
+# Set needs-op to true if you want to stop random players from controlling the game
+needs-op: false

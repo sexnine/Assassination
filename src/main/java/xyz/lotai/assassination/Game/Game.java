@@ -231,10 +231,6 @@ public class Game {
         this.eliminatePlayer(this.getPlayer(player));
     }
 
-    public void eliminatePlayerNotByDeath() {
-
-    }
-
     public void endGame() {
         this.countdown.stop();
         this.events.stopAll();

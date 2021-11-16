@@ -14,6 +14,7 @@ public class CommandHandler implements CommandExecutor {
 
     public CommandHandler(Assassination plugin) {
         new StartCommand(this);
+        new StopCommand(this);
         plugin.getCommand("assassination").setExecutor(this);
     }
 

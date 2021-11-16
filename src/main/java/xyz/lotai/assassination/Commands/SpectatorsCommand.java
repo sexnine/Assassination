@@ -7,7 +7,7 @@ public class SpectatorsCommand extends BaseCommand {
 
     public SpectatorsCommand(CommandHandler commandHandlerInstance) {
 //        super(commandHandlerInstance, "spectators", true, new String[]{"join", "list", "add", "remove"});
-        super(commandHandlerInstance, "spectators", true, null);
+        super(commandHandlerInstance, "spectators", true, false, null);
     }
 
     @Override

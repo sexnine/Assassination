@@ -3,7 +3,9 @@ package xyz.lotai.assassination.Util;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.PlayerInventory;
+import xyz.lotai.assassination.Assassination;
 
 import java.nio.ByteBuffer;
 import java.util.Random;
@@ -41,5 +43,9 @@ public class Util {
 
     public static double calculateDistanceBetween(double x1, double y1, double x2, double y2) {
         return Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
+    }
+
+    public static boolean canRunOpCommand(CommandSender sender) {
+        return sender.isOp() || !Assassination.getInstance().getConfig().getBoolean("needs-op");
     }
 }
