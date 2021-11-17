@@ -17,12 +17,12 @@ These are plugins you must have in your server for this to function.  Your serve
 Make sure to also put the plugin for Assassination in your plugins folder as well along with the other dependencies.
 
 ### Configuration
-At this moment Assassination had no configuration of its own, but you do need to configure a couple of things.
+To ensure the game runs correctly, make sure to set the following configuration:
 1. In `server.properties` set the following:
     - `allow-flight=true` This is to stop the server from kicking players that may be in the air while lagging.
     - `allow-nether=false` Assassination at this point doesn't support players going into the nether and isn't intended to allow players to do so.  This disabled players from going through nether portals.
 2. In your permissions manager, grant everyone the permission `mv.bypass.gamemode.*`  You can do this with Luckperms by running `lp group default permission set mv.bypass.gamemode.* true` in the console.
-3. By default, you will have to make yourself a server operator to run the command to start the game.  You can do this by typing `op YOUR_USERNAME` in the console.
+3. By default, anyone is allowed to control the game, if you want to only allow certain people to control the game, set `needs-op=true` in the Assassination configuration.  You can then make yourself a server operator by running `op YOUR_USERNAME` in the console.  After that, only people that are server operators can control the game.
 
 ### Encounter any bugs?
 Open an issue or contact me on Discord (username in profile), and I'll check it out :)
