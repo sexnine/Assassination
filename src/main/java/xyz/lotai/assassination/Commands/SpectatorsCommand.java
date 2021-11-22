@@ -11,7 +11,7 @@ public class SpectatorsCommand extends BaseCommand {
     }
 
     @Override
-    public void onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public void onCommand(CommandSender sender, Command command, String label, String[] args, int index) {
         switch (args[1]) {
             case "join":
 

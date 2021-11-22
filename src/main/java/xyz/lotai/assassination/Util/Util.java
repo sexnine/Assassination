@@ -8,8 +8,7 @@ import org.bukkit.inventory.PlayerInventory;
 import xyz.lotai.assassination.Assassination;
 
 import java.nio.ByteBuffer;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 public class Util {
     public static String shortUUID() {
@@ -47,5 +46,31 @@ public class Util {
 
     public static boolean canRunOpCommand(CommandSender sender) {
         return sender.isOp() || !Assassination.getInstance().getConfig().getBoolean("needs-op");
+    }
+
+    public static String convertListToString(List<String> list, String separator) {
+        int i = 0;
+        StringBuilder res = new StringBuilder();
+        while (i < list.size() - 1) {
+            res.append(list.get(i)).append(separator);
+            i++;
+        }
+        // Just a simple fix when testing with 1 player, should always be true if plugin ran properly.
+        if (list.size() > 1) {
+            res.append(list.get(i));
+        }
+        return res.toString();
+    }
+
+    public static String convertListToString(List<String> list) {
+        return convertListToString(list, "§e, §6");
+    }
+
+    public static boolean isEnoughArgs(String[] args, int index, int argsExpected) {
+        return args.length >= index + argsExpected;
+    }
+
+    public static boolean isEnoughArgs(String[] args, int index) {
+        return isEnoughArgs(args, index, 1);
     }
 }

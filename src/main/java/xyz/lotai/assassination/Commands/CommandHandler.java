@@ -3,7 +3,6 @@ package xyz.lotai.assassination.Commands;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import xyz.lotai.assassination.Assassination;
 
@@ -15,6 +14,7 @@ public class CommandHandler implements CommandExecutor {
     public CommandHandler(Assassination plugin) {
         new StartCommand(this);
         new StopCommand(this);
+        new DebugCommand(this);
         plugin.getCommand("assassination").setExecutor(this);
     }
 
@@ -32,7 +32,7 @@ public class CommandHandler implements CommandExecutor {
     public void infoCommand(CommandSender sender) {
         sender.sendMessage("§eAssassination - developed by §6sexnine");
         // TODO: Dynamic arguments - fuck it, just make this whole command handler extend BaseCommand
-        sender.sendMessage("§eAvailable subcommands: §6start§e, §6info§e, §6stop§e.");
+        sender.sendMessage("§eAvailable subcommands: §6start§e, §6info§e, §6debug§e, §6stop§e.");
     }
 
     public void addCommand(BaseCommand command) {

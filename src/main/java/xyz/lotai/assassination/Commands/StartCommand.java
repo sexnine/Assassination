@@ -13,7 +13,7 @@ public class StartCommand extends BaseCommand {
     }
 
     @Override
-    public void onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public void onCommand(CommandSender sender, Command command, String label, String[] args, int index) {
         if (Assassination.getGame().getState() != GameState.WAITING) {
             sender.sendMessage("§cA game is currently in progress.");
             return;
